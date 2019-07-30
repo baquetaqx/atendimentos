@@ -1,0 +1,80 @@
+<?php session_start(); ?>
+
+<?php
+    if(isset($_SESSION['usuario'])){
+      if($_SESSION['usuario'] != null){
+        $redirect = 'index.php';
+        header("location:$redirect");
+    }
+   }
+    
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS Suporte - Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .login-form {
+      width: 340px;
+      margin: 50px auto;
+    }
+
+    .login-form form {
+      margin-bottom: 15px;
+      background: #f7f7f7;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+    }
+
+    .login-form h2 {
+      margin: 0 0 15px;
+    }
+
+    .form-control,
+    .btn {
+      min-height: 38px;
+      border-radius: 2px;
+    }
+
+    .btn {
+      font-size: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-form">
+    <form method="POST" action="dao/login.php" id="formulario" name="login" autocomplete="off">
+      <span>
+        <?php if(isset($_GET['msg']))
+              echo '<div class="alert alert-danger">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Erro! </strong>'.$_GET['msg'].'
+              </div>';
+             ?>
+      </span>
+      <center><img src="img/logo.png" alt=""></center>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Usuário" required="required" name="usuario">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Senha" required="required" name="senha">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>
